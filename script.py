@@ -99,11 +99,13 @@ def get_menu_items_for_customer(customer):
 
     for i in range(len(customer_menu_items)):
         if customer_menu_items[-1] == customer_menu_items[i]:
-            communication_string += customer_menu_items[i] + ". Bon appétit!"
+            communication_string += customer_menu_items[i].title() + ". Bon appétit!"
         else:
-            communication_string += customer_menu_items[i] + " and "
+            communication_string += customer_menu_items[i].title() + ", "
     
     return communication_string
 
 customer_marvin = get_menu_items_for_customer(['Mr. Marvin', 'Saturday', ['meat', 'fish']])
 print(customer_marvin)
+customer_angela = get_menu_items_for_customer(['Angela', 'Monday', ['main', 'dessert']])
+print(customer_angela)
