@@ -95,7 +95,7 @@ def get_menu_items_for_customer(customer):
     customer_interests = customer[2]
     customer_menu_items = find_menu_items(customer_week_day,  customer_interests)
 
-    communication_string = "Welcome " + customer[0] + ", this " + customer_week_day + " we can offer you "
+    communication_string = "Welcome {}, this {} we can offer you ".format(customer[0], customer_week_day)
 
     for i in range(len(customer_menu_items)):
         if customer_menu_items[-1] == customer_menu_items[i]:
