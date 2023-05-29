@@ -84,7 +84,7 @@ def get_menu_items_for_customer(customer):
     customer_menu_items = find_menu_items(customer_week_day,  customer_interests)
 
     if not customer_menu_items:
-        return "Welcome {}, this {} we can offer you nothing.".format(customer[0], customer_week_day)
+        return "Welcome {}, this {} we can offer you nothing. Appologies!".format(customer[0], customer_week_day)
 
     communication_string = "Welcome {}, this {} we can offer you ".format(customer[0], customer_week_day)
 
