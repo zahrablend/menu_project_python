@@ -65,35 +65,26 @@ add_menu_item('Wednesday', ["American chocolate chip cookies", ['dessert', 'choc
 add_menu_item('Thursday', ["Fruit mix ice-cream", ['dessert', 'fruit']])
 
 # find menu items, available on a particular day and match with customer interests
-def find_menu_items(week_day, interests):
+def find_menu_items(week_day, customer_interests):
     week_day_index = get_week_day_index(week_day)
     menu_items_on_week_day = menu_items[week_day_index]
     menu_items_matching_interest = []
 
     for menu_item in menu_items_on_week_day:
-        # temp variable possible_menu_item
-        possible_menu_item = menu_item
         menu_item_tags = menu_item[1]
-
-        for interest in interests:
-            if interest in menu_item_tags:
-                menu_items_matching_interest.append(possible_menu_item[0])
+        if any(interest in menu_item_tags for interest in customer_interests):
+            menu_items_matching_interest.append(menu_item[0])
 
     return menu_items_matching_interest
-
-# TEST CASE 3: check if function call returns correct results
-# dessert = find_menu_items('Tuesday', ['dessert'])
-# friday_meal = find_menu_items('Friday', ['fish'])
-# veggies = find_menu_items('Monday', ['veggies'])
-# print(dessert)
-# print(friday_meal)
-# print(veggies)
 
 # separate customer's data
 def get_menu_items_for_customer(customer):
     customer_week_day = customer[1]
     customer_interests = customer[2]
     customer_menu_items = find_menu_items(customer_week_day,  customer_interests)
+
+    if not customer_menu_items:
+        return "Welcome {}, this {} we can offer you nothing.".format(customer[0], customer_week_day)
 
     communication_string = "Welcome {}, this {} we can offer you ".format(customer[0], customer_week_day)
 
@@ -107,5 +98,5 @@ def get_menu_items_for_customer(customer):
 
 customer_marvin = get_menu_items_for_customer(['Mr. Marvin', 'Saturday', ['meat', 'fish']])
 print(customer_marvin)
-customer_angela = get_menu_items_for_customer(['Angela', 'Monday', ['main', 'dessert']])
+customer_angela = get_menu_items_for_customer(['Angela', 'Monday', "American chocolate chip cookies"])
 print(customer_angela)
